@@ -163,7 +163,7 @@
             Deserializes JSON to an object.
             </summary>
             <param name="data">Serialized data.</param>
-            <returns>Data object.</returns>
+            <returns>Expando object.</returns>
         </member>
         <member name="M:Woof.Net.Http.JsonContractSerializer.Deserialize(System.String,System.Type)">
             <summary>
@@ -171,7 +171,7 @@
             </summary>
             <param name="data">Serialized data.</param>
             <param name="type">Target type.</param>
-            <returns>Data object.</returns>
+            <returns>Deserialized object of specified type.</returns>
         </member>
         <member name="M:Woof.Net.Http.JsonContractSerializer.Deserialize``1(System.String)">
             <summary>
@@ -179,7 +179,7 @@
             </summary>
             <typeparam name="T">Target type.</typeparam>
             <param name="data">Serialized data.</param>
-            <returns><see cref="!:T"/> instance.</returns>
+            <returns>Deserialized type.</returns>
         </member>
         <member name="M:Woof.Net.Http.JsonContractSerializer.Serialize(System.Object)">
             <summary>
@@ -190,7 +190,7 @@
         </member>
         <member name="M:Woof.Net.Http.JsonContractSerializer.Serialize``1(``0)">
             <summary>
-            Serializes the <see cref="!:T"/> instance to JSON.
+            Serializes the specified type instance to JSON.
             </summary>
             <typeparam name="T">Data type.</typeparam>
             <param name="data">Data object.</param>
@@ -246,6 +246,11 @@
             <param name="response">This response.</param>
             <param name="stream">Stream to send. The stream is automatically disposed when sent.</param>
             <param name="contentType">Content type.</param>
+        </member>
+        <member name="T:Woof.Net.Http.LocalFileSystemAdapter">
+            <summary>
+            File system adapter implementing local files and directories.
+            </summary>
         </member>
         <member name="M:Woof.Net.Http.LocalFileSystemAdapter.DirectoryExists(System.String)">
             <summary>
@@ -604,6 +609,7 @@
         <member name="P:Woof.Net.Http.ServerContext.Current">
             <summary>
             Gets or sets the server context for the request in the current thread.
+            Adds the context to the static collection if the context is new.
             </summary>
         </member>
         <member name="P:Woof.Net.Http.ServerContext.IsOriginPresent">
@@ -637,6 +643,11 @@
             </summary>
             <param name="prefixes">URL prefixes.</param>
             <param name="listenerContext">Listener context.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServerContext.Leave">
+            <summary>
+            Removes the current thread's server context from the static context collection.
+            </summary>
         </member>
         <member name="M:Woof.Net.Http.ServerContext.TryResolveLocalPrefix(System.String,System.String@)">
             <summary>
@@ -683,6 +694,7 @@
             </summary>
             <param name="httpMethod">HTTP (upper case) method name like "GET" or "POST".</param>
             <param name="uriPattern">URI pattern like "method/{param1}"</param>
+            <param name="returnContentType">Response MIME type for binary streams.</param>
         </member>
         <member name="T:Woof.Net.Http.ServiceBinding">
             <summary>
@@ -1013,6 +1025,12 @@
         <member name="T:Woof.Net.MultiThreadSemaphore">
             <summary>
             Multi-thread semaphore allows multiple threads to block until release signal occurs.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.MultiThreadSemaphore.MaxThreadsAllowed">
+            <summary>
+            Gets or sets the highest number of threads allowed to be blocked.
+            When this number is exceeded, blocking another thread will cause releasing the oldest thread.
             </summary>
         </member>
         <member name="F:Woof.Net.MultiThreadSemaphore.WaitEventSource">
