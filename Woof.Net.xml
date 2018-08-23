@@ -1,0 +1,1044 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Woof.Net</name>
+    </assembly>
+    <members>
+        <member name="T:Woof.Net.Http.HttpException">
+            <summary>
+            Represents HTTP server fault exception.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.HttpException.HttpStatusCode">
+            <summary>
+            Gets HTTP status code.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.HttpException.HttpStatusDescription">
+            <summary>
+            Gets the status decription if available.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.HttpException.#ctor(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Creates HTTP server fault exception.
+            </summary>
+            <param name="httpStatusCode">HTTP status code.</param>
+            <param name="httpStatusCodeDescription">Optional status description.</param>
+        </member>
+        <member name="T:Woof.Net.Http.HttpRequestEventArgs">
+            <summary>
+            Event arguments for <see cref="E:Woof.Net.Http.Server.Request"/> event.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.HttpRequestEventArgs.Context">
+            <summary>
+            Gets the server context.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.HttpRequestEventArgs.IsHandled">
+            <summary>
+            Gets or sets a value indicating the request was handled within the event handler.
+            When true, all further site and service binding will be skipped.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.HttpRequestEventArgs.#ctor(Woof.Net.Http.ServerContext)">
+            <summary>
+            Creates new <see cref="T:Woof.Net.Http.HttpRequestEventArgs"/> with a specified server context.
+            </summary>
+            <param name="context">Server context.</param>
+        </member>
+        <member name="T:Woof.Net.Http.IContractSerializer">
+            <summary>
+            Defines data serializer for contracts.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.IContractSerializer.ContentType">
+            <summary>
+            Gets the content type for serialized data.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Serialize(System.Object)">
+            <summary>
+            Serializes data to string.
+            </summary>
+            <param name="data">Data object.</param>
+            <returns>Serialized data.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Serialize``1(``0)">
+            <summary>
+            Serializes data to string.
+            </summary>
+            <typeparam name="T">Data type to serialize.</typeparam>
+            <param name="data">Data object.</param>
+            <returns>Serialized data.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Serialize(System.Object,System.Type)">
+            <summary>
+            Serializes typed data to string.
+            </summary>
+            <param name="data">Data type to serialize.</param>
+            <param name="type">Source type.</param>
+            <returns>Serialized data.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Deserialize(System.String)">
+            <summary>
+            Deserializes data from string to generic type (check for <see cref="T:System.Dynamic.ExpandoObject"/>).
+            </summary>
+            <param name="data">Serialized data.</param>
+            <returns>Data object.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Deserialize(System.String,System.Type)">
+            <summary>
+            Deserialized data to specified type.
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.Net.Http.IContractSerializer.Deserialize``1(System.String)">
+            <summary>
+            Deserializes data from string.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="data">Serialized data.</param>
+            <returns>Data object.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.IReadOnlyFileSystemAdapter">
+            <summary>
+            Allows to attach to normalize file system access.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.IReadOnlyFileSystemAdapter.FileExists(System.String)">
+            <summary>
+            Checks if the file exists in implemented file system.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>True if the file exists.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IReadOnlyFileSystemAdapter.DirectoryExists(System.String)">
+            <summary>
+            Checks if the directory exists in implemented file system.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Woof.Net.Http.IReadOnlyFileSystemAdapter.NormalizePath(System.String)">
+            <summary>
+            Normalize relative paths to absolute if applicable.
+            </summary>
+            <param name="path">Absolute or relative path.</param>
+            <returns>Absolute path.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.IReadOnlyFileSystemAdapter.GetStream(System.String)">
+            <summary>
+            Gets the file stream in non-blocking, read-only manner.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>Read only stream.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.JsonContractSerializer">
+            <summary>
+            <see cref="N:Newtonsoft.Json"/> <see cref="T:Woof.Net.Http.IContractSerializer"/> implementation.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.JsonContractSerializer.Settings">
+            <summary>
+            Gets the serialization settings.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.#ctor(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Creates the serializer object and initializes it with settings.
+            </summary>
+            <param name="settings">Optional custom settings for serialization.</param>
+        </member>
+        <member name="P:Woof.Net.Http.JsonContractSerializer.ContentType">
+            <summary>
+            Gets the content type for serialized data.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Deserialize(System.String)">
+            <summary>
+            Deserializes JSON to an object.
+            </summary>
+            <param name="data">Serialized data.</param>
+            <returns>Data object.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Deserialize(System.String,System.Type)">
+            <summary>
+            Deserializes JSON to an object of specified type.
+            </summary>
+            <param name="data">Serialized data.</param>
+            <param name="type">Target type.</param>
+            <returns>Data object.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Deserialize``1(System.String)">
+            <summary>
+            Deserializes JSON to the specified type.
+            </summary>
+            <typeparam name="T">Target type.</typeparam>
+            <param name="data">Serialized data.</param>
+            <returns><see cref="!:T"/> instance.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Serialize(System.Object)">
+            <summary>
+            Serializes the data object to JSON.
+            </summary>
+            <param name="data">Data object.</param>
+            <returns>JSON serialized data.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Serialize``1(``0)">
+            <summary>
+            Serializes the <see cref="!:T"/> instance to JSON.
+            </summary>
+            <typeparam name="T">Data type.</typeparam>
+            <param name="data">Data object.</param>
+            <returns>JSON serialized data.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.JsonContractSerializer.Serialize(System.Object,System.Type)">
+            <summary>
+            Serializes data object of specified type to JSON.
+            </summary>
+            <param name="data">Data object.</param>
+            <param name="type">Data type.</param>
+            <returns>JSON serialized data.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.ListenerResponseExtensions">
+            <summary>
+            Extensions writing different types of data to the <see cref="P:System.Net.HttpListenerResponse.OutputStream"/>.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ListenerResponseExtensions.SendJson(System.Net.HttpListenerResponse,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Sends a JSON object as response. Response stream is closed afterwards.
+            </summary>
+            <param name="response">This response.</param>
+            <param name="data">JSON object.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ListenerResponseExtensions.SendHTML(System.Net.HttpListenerResponse,System.String)">
+            <summary>
+            Sends HTML as response. Response stream is closed afterwards.
+            </summary>
+            <param name="response">This response.</param>
+            <param name="html">HTML.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ListenerResponseExtensions.SendText(System.Net.HttpListenerResponse,System.String,System.String)">
+            <summary>
+            Sends some plain text as response. Response stream is closed afterwards.
+            </summary>
+            <param name="response">This response.</param>
+            <param name="text">Text.</param>
+            <param name="contentType">Optional content type.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ListenerResponseExtensions.SendData(System.Net.HttpListenerResponse,System.Byte[],System.String)">
+            <summary>
+            Sends some binary data as response. Response stream is closed afterwards.
+            </summary>
+            <param name="response">This response.</param>
+            <param name="data">Binary data.</param>
+            <param name="contentType">Optional content type.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ListenerResponseExtensions.SendStream(System.Net.HttpListenerResponse,System.IO.Stream,System.String)">
+            <summary>
+            Sends a stream as response. Response stream is closed afterwards.
+            </summary>
+            <param name="response">This response.</param>
+            <param name="stream">Stream to send. The stream is automatically disposed when sent.</param>
+            <param name="contentType">Content type.</param>
+        </member>
+        <member name="M:Woof.Net.Http.LocalFileSystemAdapter.DirectoryExists(System.String)">
+            <summary>
+            Checks if the directory exists in the local file system.
+            </summary>
+            <param name="path">Path to the directory.</param>
+            <returns>True if directory exists.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.LocalFileSystemAdapter.FileExists(System.String)">
+            <summary>
+            Checks if the file exists in the local file system.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>True if file exists.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.LocalFileSystemAdapter.NormalizePath(System.String)">
+            <summary>
+            Normalize relative paths to absolute if applicable.
+            </summary>
+            <param name="path">Absolute or relative path.</param>
+            <returns>Absolute path.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.LocalFileSystemAdapter.GetStream(System.String)">
+            <summary>
+            Gets the local file stream.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>File stream.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.OperationContract">
+            <summary>
+            Defines operation contract with method signature and metadata, provides metods to match contracts to requests and invoke them.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.OperationContract.Signature">
+            <summary>
+            Gets the contract's method signature.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.OperationContract.Metadata">
+            <summary>
+            Gets the contract's metadata.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.#ctor(System.Reflection.MethodInfo,Woof.Net.Http.OperationContractAttribute)">
+            <summary>
+            Creates new operation contract definition from method signature and metadata.
+            </summary>
+            <param name="signature">Method signature.</param>
+            <param name="metadata">Metadata.</param>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.IsUriMatch(System.Reflection.MethodInfo,System.String,System.String)">
+            <summary>
+            Returns true if URI priovided matches the method signature name directly or matches the pattern provided.
+            </summary>
+            <param name="signature">Method signature.</param>
+            <param name="uri">URI to parse.</param>
+            <param name="pattern">Optional URI pattern.</param>
+            <returns>True if URI matches, false otherwise.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.GetSerializedValues(System.String,System.String)">
+            <summary>
+            Gets serialized input values as <see cref="T:System.Collections.Specialized.NameValueCollection"/>.
+            </summary>
+            <param name="uri">URI to parse.</param>
+            <param name="pattern">Optional URI pattern.</param>
+            <returns>Serialized values as <see cref="T:System.Collections.Specialized.NameValueCollection"/>.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.GetParameterValues(System.Reflection.MethodInfo,Woof.Net.Http.IContractSerializer,System.String,System.String)">
+            <summary>
+            Gets deserialized input parameter values.
+            </summary>
+            <param name="signature">Method signature.</param>
+            <param name="serializer">Contract serializer.</param>
+            <param name="uri">Request URI.</param>
+            <param name="pattern">Optional URI pattern.</param>
+            <returns>Deserialized input parameter values.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.ProcessHttpRequest(Woof.Net.Http.ServerContext,System.Object,System.String,Woof.Net.Http.IContractSerializer)">
+            <summary>
+            Processes incoming HTTP request from the server.
+            Uses a matched operation contract to provide response.
+            Returns true if the request was handled here.
+            </summary>
+            <param name="context">HTTP server context.</param>
+            <param name="serviceInstance">An instance of the service class.</param>
+            <param name="uri">Relative operation contract URI without prefix.</param>
+            <param name="contractSerializer">A serializer used to serialize and deserialize contract's data.</param>
+            <returns>True if the request was handled, false otherwise.</returns>
+        </member>
+        <member name="F:Woof.Net.Http.OperationContract.RxCurlyBracesContent">
+            <summary>
+            Regular expression matching the text in curly braces.
+            </summary>
+        </member>
+        <member name="T:Woof.Net.Http.ResourceStreamAdapter">
+            <summary>
+            <see cref="T:Woof.Net.Http.IReadOnlyFileSystemAdapter"/> implementing assembly manifest resources virtual file system.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Creates new assembly manifest resources virtual file system.
+            </summary>
+            <param name="targetAssembly">Optional target assembly. Default is entry assembly.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.DirectoryExists(System.String)">
+            <summary>
+            Checks if specified virtual directory exists.
+            Since assembly manifest resources don't have directories,
+            it returns true if the beginning of the path matches one of the paths but the rest of the path doesn't.
+            </summary>
+            <param name="path">Path to the "directory".</param>
+            <returns>True if "directory" exists.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.FileExists(System.String)">
+            <summary>
+            Checks if specified file exists.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>True if file exists.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.GetStream(System.String)">
+            <summary>
+            Gets the manifest resource stream pointed with local-like path.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <returns>Manifest resource stream.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.NormalizePath(System.String)">
+            <summary>
+            Empty normalizer, since all resource paths are relative ones.
+            </summary>
+            <param name="path">Original path.</param>
+            <returns>Same path.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ResourceStreamAdapter.GetManifestResourcePath(System.String)">
+            <summary>
+            Converts local-like paths to more manifest resource paths.
+            </summary>
+            <param name="path">Local-like path.</param>
+            <returns>Manifest resource-like path.</returns>
+        </member>
+        <member name="F:Woof.Net.Http.ResourceStreamAdapter.TargetAssembly">
+            <summary>
+            Target assembly.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ResourceStreamAdapter.TargetAssemblyName">
+            <summary>
+            Target assembly name.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ResourceStreamAdapter.Directory">
+            <summary>
+            An array of manifest resource names without the assembly name.
+            </summary>
+        </member>
+        <member name="T:Woof.Net.Http.Server">
+            <summary>
+            Modern HTTP server.
+            </summary>
+            <summary>
+            Handles Cross-Origin Resource Sharing.
+            </summary>
+            <summary>
+            <see cref="T:Woof.Net.Http.Server"/> SSL support.
+            </summary>
+        </member>
+        <member name="E:Woof.Net.Http.Server.ListenerException">
+            <summary>
+            Occurs when <see cref="T:System.Net.HttpListenerException"/> is thrown within listening loop.
+            </summary>
+        </member>
+        <member name="E:Woof.Net.Http.Server.Request">
+            <summary>
+            Occurs when a request is sent to the server.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.Listener">
+            <summary>
+            Gets or sets the <see cref="T:System.Net.HttpListener"/> instance used for HTTP communication.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.MaxConcurrentRequests">
+            <summary>
+            Gets or sets maximum number of independent request processing threads.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.Prefixes">
+            <summary>
+            Gets the prefixes configured with the constructor and bound to the server.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.SiteBindings">
+            <summary>
+            Gets the value defining how relative paths within server prefix are mapped with local sites.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.ServiceBindings">
+            <summary>
+            Gets the bound services collection.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.IsStarted">
+            <summary>
+            Gets the value indicating whether the server has been started.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.IsDisposed">
+            <summary>
+            Gets the value indicating whether the server instance has been disposed.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.#ctor(System.String[])">
+            <summary>
+            Creates HTTP server instance for given prefixes.
+            </summary>
+            <param name="prefixes">Prefixes to bind with the server.</param>
+        </member>
+        <member name="M:Woof.Net.Http.Server.Start">
+            <summary>
+            Starts the server.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.Stop">
+            <summary>
+            Stops the server.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.Dispose">
+            <summary>
+            Disposes the server.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.GetContextCallback(System.IAsyncResult)">
+            <summary>
+            Handles asynchronous HTTP requests.
+            </summary>
+            <param name="asyncResult">Status of the asynchronous operation.</param>
+        </member>
+        <member name="P:Woof.Net.Http.Server.AccessControlAllowCredentials">
+            <summary>
+            Gets or sets a value indicating whether the server can accept cross-domain cookies.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.AccessControlAllowHeaders">
+            <summary>
+            Gets or sets a value containing headers allowed for cross-domain requests. The separator is ", ".
+            "*" means all requested headers.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.AccessControlAllowMethods">
+            <summary>
+            Gets or sets a value containing methods allowed for cross-domain requests. The separator is ", ".
+            "*" means all requested methods.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.AccessControlMaxAge">
+            <summary>
+            Gets or sets a value indicating how long the results of a preflight request (that is the information contained in the Access-Control-Allow-Methods and Access-Control-Allow-Headers headers) can be cached.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.Server.AccessControlAllowOrigin">
+            <summary>
+            Gets or sets a value containing one or more domains allowed to send requests.
+            The separator is ", ". Use "*" to allow all origins.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.CorsProcess(Woof.Net.Http.ServerContext)">
+            <summary>
+            Handles CORS requests.
+            </summary>
+            <param name="context">Server context.</param>
+            <returns>True if request is allowed, false otherwise.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.CorsGetOriginAllowed(Woof.Net.Http.ServerContext)">
+            <summary>
+            Gets the one origin from defined list if matches. Returns null if the origin should not be allowed.
+            </summary>
+            <param name="context">Server context.</param>
+            <returns>*, requestOrigin or null.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.CorsAllow(Woof.Net.Http.ServerContext,System.String)">
+            <summary>
+            Accepts CORS simple and preflight requests.
+            </summary>
+            <param name="context">Server context.</param>
+            <param name="originAllowed">Origin allowed.</param>
+            <returns>Always true.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.CorsDeny(Woof.Net.Http.ServerContext)">
+            <summary>
+            Denies CORS simple and preflight requests.
+            </summary>
+            <param name="context">Server context.</param>
+            <returns>Always false.</returns>
+        </member>
+        <member name="F:Woof.Net.Http.Server.RxByComaWs">
+            <summary>
+            Regular expression used to split strings by coma with optional whitespace.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslConfigure(System.String[])">
+            <summary>
+            Configures certificates for end points.
+            </summary>
+            <param name="thumbPrints">Thumb prints for each configured prefix.</param>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslGetStores(System.Security.Cryptography.X509Certificates.StoreLocation)">
+            <summary>
+            Enumerates all available certificate stores in specifed location.
+            </summary>
+            <param name="storeLocation">Store location.</param>
+            <returns>Store name array.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslFindStore(System.String,System.Security.Cryptography.X509Certificates.StoreLocation)">
+            <summary>
+            Finds SSL Certificate store for given thumb print.
+            </summary>
+            <param name="thumbPrint">Certificate hash.</param>
+            <param name="storeLocation">Store location.</param>
+            <returns>Store name or null if not found.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslGetCertProperties(System.String,System.Int32)">
+            <summary>
+            Gets the X509 certificate properties for specified host name and port.
+            </summary>
+            <param name="hostname">Host name.</param>
+            <param name="port">Port number.</param>
+            <returns>Properties dictionary.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslAddCert(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Adds SSL certificate for the specified host name and port.
+            </summary>
+            <param name="hostname">Host name.</param>
+            <param name="port">Port number.</param>
+            <param name="appId">Application GUID as string, no curly braces.</param>
+            <param name="certHash">Certificate thumprint.</param>
+            <returns>True if added successfully, false if error occured.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.Server.SslDeleteCert(System.String,System.Int32)">
+            <summary>
+            Deletes SSL certificate for the specified host name and port.
+            </summary>
+            <param name="hostname">Host name.</param>
+            <param name="port">Port number.</param>
+            <returns>True if deleted successfully, false if error occured.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.ServerContext">
+            <summary>
+            Represents HTTP server context containing Path, Request and Response objects.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.Current">
+            <summary>
+            Gets or sets the server context for the request in the current thread.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.IsOriginPresent">
+            <summary>
+            Gets true if request contains "Origin" header.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.IsPreflightDetected">
+            <summary>
+            Gets true if request contains "Origin" header and the request type is "OPTIONS".
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.RequestPath">
+            <summary>
+            Gets the URL of the request relative to the matched prefix, or null if the prefix is not matched.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.Request">
+            <summary>
+            Gets the request received.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServerContext.Response">
+            <summary>
+            Gets the response before sending.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ServerContext.#ctor(System.Net.HttpListenerPrefixCollection,System.Net.HttpListenerContext)">
+            <summary>
+            Creates new HTTP server context from prefixes and listener context.
+            </summary>
+            <param name="prefixes">URL prefixes.</param>
+            <param name="listenerContext">Listener context.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServerContext.TryResolveLocalPrefix(System.String,System.String@)">
+            <summary>
+            Tries to resolve the relative URL considering the local path prefix.
+            </summary>
+            <param name="pathPrefix">Local path prefix.</param>
+            <param name="relativeUrl">Relative URL without prefix resolved, or null if set and not matched.</param>
+            <returns>True if the prefix is not set or matched.</returns>
+        </member>
+        <member name="F:Woof.Net.Http.ServerContext.PerThreadContexts">
+            <summary>
+            Contains server contexts for each parallel thread.
+            </summary>
+        </member>
+        <member name="T:Woof.Net.Http.ServiceContractAttribute">
+            <summary>
+            Attribute providing metadata to service contract interface or class.
+            </summary>
+        </member>
+        <member name="T:Woof.Net.Http.OperationContractAttribute">
+            <summary>
+            Attribute providing metadata to an operation contract method.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.OperationContractAttribute.HttpMethod">
+            <summary>
+            Gets the contract HTTP method like "get" or "post".
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.OperationContractAttribute.UriPattern">
+            <summary>
+            Gets the URI pattern to match in the relative path, like "method/{param1}"
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.OperationContractAttribute.ReturnContentType">
+            <summary>
+            Gets the response content type for binary streams.
+            For data objects this has no effect, because serializer content type is used.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContractAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates new <see cref="T:Woof.Net.Http.OperationContractAttribute"/> from method and optional URI pattern.
+            </summary>
+            <param name="httpMethod">HTTP (upper case) method name like "GET" or "POST".</param>
+            <param name="uriPattern">URI pattern like "method/{param1}"</param>
+        </member>
+        <member name="T:Woof.Net.Http.ServiceBinding">
+            <summary>
+            Defines a binding between path prefix and a service contract.
+            Allows hosting web services with <see cref="T:Woof.Net.Http.Server"/>.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServiceBinding.PathPrefix">
+            <summary>
+            Gets or sets the first relative URL part used to match the requests.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.ServiceBinding.ContractSerializer">
+            <summary>
+            Gets or sets the serializer used to serialize and deserialize data from and to operation contracts.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBinding.ProcessHttpRequest(Woof.Net.Http.ServerContext)">
+            <summary>
+            Processes incoming HTTP request from the server.
+            Uses a matched operation contract to provide response.
+            Returns true if the request was handled here.
+            </summary>
+            <param name="context">HTTP server context.</param>
+            <returns>True if the request was handled, false otherwise.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBinding.#ctor(System.Type)">
+            <summary>
+            Creates a service binding from the service type alone.
+            The instance of the service class will be created on each request.
+            </summary>
+            <param name="serviceType">Service type.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBinding.#ctor(System.Object)">
+            <summary>
+            Creates a service binding from the singleton instance of the service.
+            </summary>
+            <param name="instance">Service instance.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBinding.#ctor(System.Type,System.Object)">
+            <summary>
+            Creates a service binding from a service type or a service instance.
+            If the instance is given, the type is ignored.
+            If the type is given, the service class is instantiated on each request.
+            </summary>
+            <param name="serviceType">Service type.</param>
+            <param name="instance">Service instance.</param>
+        </member>
+        <member name="F:Woof.Net.Http.ServiceBinding.OperationContracts">
+            <summary>
+            Discovered operation contracts.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ServiceBinding.ServiceInstance">
+            <summary>
+            Service signleton instance if available, null when the service class has to be instantiated on each request.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ServiceBinding.ServiceType">
+            <summary>
+            Service type.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ServiceBinding._ContractSerializer">
+            <summary>
+            Contract serializer instance cache.
+            </summary>
+        </member>
+        <member name="T:Woof.Net.Http.ServiceBindingCollection">
+            <summary>
+            Represents a specialized collection of <see cref="T:Woof.Net.Http.ServiceBinding"/> items.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.ServiceBindingCollection.Items">
+            <summary>
+            Service bindings.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.#ctor">
+            <summary>
+            Creates an empty service binding collection.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.#ctor(System.Collections.Generic.IEnumerable{Woof.Net.Http.ServiceBinding})">
+            <summary>
+            Creates a service binding collection from any other service binding collection.
+            </summary>
+            <param name="serviceBindings">Service binding collection.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.Add(Woof.Net.Http.ServiceBinding)">
+            <summary>
+            Adds a new binding to internal items list.
+            </summary>
+            <param name="binding">Service binding.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.Add``1">
+            <summary>
+            Adds a new service binding from the service type alone.
+            The instance of the service class will be created on each request.
+            </summary>
+            <typeparam name="T">Service type.</typeparam>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.Add``1(System.String)">
+            <summary>
+            Adds a new service binding from the service type alone.
+            The instance of the service class will be created on each request.
+            </summary>
+            <typeparam name="T">Service type.</typeparam>
+            <param name="pathPrefix">The first relative URL part used to match the requests.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.Add``1(``0)">
+            <summary>
+            Add a new service binding from the singleton instance of the service.
+            </summary>
+            <typeparam name="T">Service type.</typeparam>
+            <param name="instance">Service signleton instance.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.Add``1(``0,System.String)">
+            <summary>
+            Add a new service binding from the singleton instance of the service.
+            </summary>
+            <typeparam name="T">Service type.</typeparam>
+            <param name="instance">Service signleton instance.</param>
+            <param name="pathPrefix">The first relative URL part used to match the requests.</param>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.ServiceBindingCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.SiteBinding">
+            <summary>
+            Defines a binding between path prefix and document root.
+            Allows serving a simple HTML site.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.PathPrefix">
+            <summary>
+            Gets the path prefix within the server prefix.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.FileSystemAdapter">
+            <summary>
+            Gets or sets the file system adapter. Default the <see cref="T:Woof.Net.Http.LocalFileSystemAdapter"/> is created.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.DocumentRoot">
+            <summary>
+            Gets the document root location for binding.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.DocumentDefault">
+            <summary>
+            Gets the default document for the directory path.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.Document404">
+            <summary>
+            Gets the default 404 document for the missing content fallback HTML.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.Http.SiteBinding.IsDirectoryListingAllowed">
+            <summary>
+            Gets a value indicating whether the directory listing of the site is enabled.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBinding.GetLocalPath(System.String)">
+            <summary>
+            Gets the local document location for specified relative path.
+            </summary>
+            <param name="relativeUrl">Relative document URL, without local prefix.</param>
+            <returns>Absolute path to the local file or directory.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBinding.ProcessHttpRequest(Woof.Net.Http.ServerContext)">
+            <summary>
+            Processes incoming HTTP request from the server. Serves local documents directly. Returns true if the request was handled here.
+            </summary>
+            <param name="context">HTTP server context.</param>
+            <returns>True if the request was handled, false otherwise.</returns>
+        </member>
+        <member name="T:Woof.Net.Http.SiteBindingCollection">
+            <summary>
+            Represents a specialized collection of <see cref="T:Woof.Net.Http.SiteBinding"/> items.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.Http.SiteBindingCollection.Items">
+            <summary>
+            Site bindings.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.#ctor">
+            <summary>
+            Creates an empty site binding collection.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.#ctor(System.Collections.Generic.IEnumerable{Woof.Net.Http.SiteBinding})">
+            <summary>
+            Creates a site binding collection from any other site binding collection.
+            </summary>
+            <param name="siteBindings">Site bindings collection.</param>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.Add(Woof.Net.Http.SiteBinding)">
+            <summary>
+            Adds a new binding to internal items list.
+            </summary>
+            <param name="siteBinding">Site binding.</param>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.Add(System.String)">
+            <summary>
+            Adds a new binding to internal items list.
+            </summary>
+            <param name="documentRoot">Document root location.</param>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.Add(System.String,System.String)">
+            <summary>
+            Adds a new binding to internal items list.
+            </summary>
+            <param name="documentRoot">Document root location.</param>
+            <param name="pathPrefix">Path prefix within the server prefix.</param>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.Clear">
+            <summary>
+            Clears all bindings.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that iterates through the collection.</returns>
+        </member>
+        <member name="M:Woof.Net.Http.SiteBindingCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that iterates through the collection.</returns>
+        </member>
+        <member name="T:Woof.Net.MimeMapping">
+            <summary>
+            Gets MIME mappings from file extensions.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MimeMapping.Mapping">
+            <summary>
+            MIME mapping dictionary.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MimeMapping.FallbackType">
+            <summary>
+            MIME type used as falback when cannot be determined from file extension.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MimeMapping.GetMimeType(System.String)">
+            <summary>
+            Gets the MIME type determined from file extension.
+            </summary>
+            <param name="path">Path to a file.</param>
+            <returns>MIME type.</returns>
+        </member>
+        <member name="T:Woof.Net.MultiThreadGroupSemaphoreCollection">
+            <summary>
+            Multi-thread semaphore group collection allows multiple groups of threads to block until signal for the group occurs.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MultiThreadGroupSemaphoreCollection.GroupSemaphores">
+            <summary>
+            Contains multi-thread semaphore groups.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MultiThreadGroupSemaphoreCollection.IsDisposing">
+            <summary>
+            True while disposing the collection.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MultiThreadGroupSemaphoreCollection.DefaultGroupName">
+            <summary>
+            Default name for the group.
+            </summary>
+        </member>
+        <member name="P:Woof.Net.MultiThreadGroupSemaphoreCollection.Item(System.String)">
+            <summary>
+            Gets the <see cref="T:Woof.Net.MultiThreadSemaphore"/> for the specified group name.
+            </summary>
+            <param name="groupName">Group name.</param>
+            <returns>Multi-thread semaphore.</returns>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.WaitEvent(System.String)">
+            <summary>
+            Waits for the release signal for the group.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.ReleaseAll(System.String)">
+            <summary>
+            Releases all threads in the group.
+            </summary>
+            <param name="groupName">Group name.</param>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.Clear">
+            <summary>
+            Clears the collection, disposes all semaphores.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.Dispose">
+            <summary>
+            Disposes all semaphores, clears the collection.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.GetEnumerator">
+            <summary>
+            Iterates over all items.
+            </summary>
+            <returns>Items enumerator.</returns>
+        </member>
+        <member name="M:Woof.Net.MultiThreadGroupSemaphoreCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Iterates over all items.
+            </summary>
+            <returns>Items enumerator.</returns>
+        </member>
+        <member name="T:Woof.Net.MultiThreadSemaphore">
+            <summary>
+            Multi-thread semaphore allows multiple threads to block until release signal occurs.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MultiThreadSemaphore.WaitEventSource">
+            <summary>
+            Event source used to block threads until external activation occurs.
+            </summary>
+        </member>
+        <member name="F:Woof.Net.MultiThreadSemaphore.WaitingThreadsCount">
+            <summary>
+            The number of waiting threads.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MultiThreadSemaphore.Dispose">
+            <summary>
+            Releases all resources used by the current instance of the System.Threading.WaitHandle class.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MultiThreadSemaphore.WaitEvent">
+            <summary>
+            Blocks the current thread until release signal occurs.
+            </summary>
+        </member>
+        <member name="M:Woof.Net.MultiThreadSemaphore.ReleaseAll">
+            <summary>
+            Release all blocked threads.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+﻿html, body { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #f4f4e4; }
+body { font-family: 'Exo 2', sans-serif; color: #589; }
+.main-container { width: 100%; height: 100%; }
+.main-container td { text-align: center; vertical-align: middle; }
+.main-container td div { background-color: #b7e7f0; padding: 4em; box-shadow: 0 0 4em #ade; }
+.main-container td .error { background-color: #f0b7b7; box-shadow: 0 0 4em #f77; color: #f00; }
