@@ -9,6 +9,11 @@
     <PackageProjectUrl>https://github.com/HTD/Woof.Net</PackageProjectUrl>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <PackageTags>webservice http net core</PackageTags>
+    <Product>Woof.Net</Product>
+    <PackageId>Woof.Net</PackageId>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Source\Woof\Woof.Net\Woof.Net.xml</DocumentationFile>
