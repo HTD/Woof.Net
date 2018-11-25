@@ -204,24 +204,13 @@ namespace Woof.Net.Http {
                 }
             }
             catch (HttpException x) {
-                context.Response.StatusCode = (int)x.HttpStatusCode;
-                if (x.HttpStatusDescription != null) context.Response.StatusDescription = x.HttpStatusDescription;
-                context.Response.SendText(x.HttpStatusDescription);
-                context.Response.Close();
+                HandleHttpException(context, x);
                 return true;
             }
-#if DEBUG
             catch (Exception x) {
-#else
-            catch (Exception) {
-#endif
-                context.Response.StatusCode = 400;
-#if DEBUG
-                context.Response.SendText(x.InnerException?.Message ?? x.Message);
-#else
-                context.Response.SendText(context.Response.StatusDescription, "text/plain");
-#endif
-                context.Response.Close();
+                if (x.InnerException != null) x = x.InnerException;
+                if (x is HttpException h) HandleHttpException(context, h);
+                else HandleGenericException(context, x);
                 return true;
             }
             context.Response.Headers["Server"] = "WOOF";
@@ -238,6 +227,33 @@ namespace Woof.Net.Http {
                 context.Response.SendText(serializedResult, contractSerializer.ContentType);
             }
             return true;
+        }
+
+        /// <summary>
+        /// Handles any non HTTP exceptions from service code.
+        /// </summary>
+        /// <param name="context">HTTP server context.</param>
+        /// <param name="x">Exception.</param>
+        private void HandleGenericException(ServerContext context, Exception x) {
+            context.Response.StatusCode = 400;
+#if DEBUG
+            context.Response.SendText(x.InnerException?.Message ?? x.Message);
+#else
+            context.Response.SendText(context.Response.StatusDescription, "text/plain");
+#endif
+            context.Response.Close();
+        }
+
+        /// <summary>
+        /// Handles HTTP exceptions from service code.
+        /// </summary>
+        /// <param name="context">HTTP server context.</param>
+        /// <param name="x">Exception.</param>
+        private void HandleHttpException(ServerContext context, HttpException x) {
+            context.Response.StatusCode = (int)x.HttpStatusCode;
+            if (x.HttpStatusDescription != null) context.Response.StatusDescription = x.HttpStatusDescription;
+            context.Response.SendText(x.HttpStatusDescription);
+            context.Response.Close();
         }
 
         /// <summary>

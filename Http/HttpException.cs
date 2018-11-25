@@ -25,7 +25,7 @@ namespace Woof.Net.Http {
         /// <param name="httpStatusCodeDescription">Optional status description.</param>
         public HttpException(HttpStatusCode httpStatusCode, string httpStatusCodeDescription = null) {
             HttpStatusCode = httpStatusCode;
-            HttpStatusDescription = httpStatusCodeDescription;
+            HttpStatusDescription = httpStatusCodeDescription ?? httpStatusCode.ToString();
         }
 
     }

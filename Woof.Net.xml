@@ -341,6 +341,20 @@
             <param name="contractSerializer">A serializer used to serialize and deserialize contract's data.</param>
             <returns>True if the request was handled, false otherwise.</returns>
         </member>
+        <member name="M:Woof.Net.Http.OperationContract.HandleGenericException(Woof.Net.Http.ServerContext,System.Exception)">
+            <summary>
+            Handles any non HTTP exceptions from service code.
+            </summary>
+            <param name="context">HTTP server context.</param>
+            <param name="x">Exception.</param>
+        </member>
+        <member name="M:Woof.Net.Http.OperationContract.HandleHttpException(Woof.Net.Http.ServerContext,Woof.Net.Http.HttpException)">
+            <summary>
+            Handles HTTP exceptions from service code.
+            </summary>
+            <param name="context">HTTP server context.</param>
+            <param name="x">Exception.</param>
+        </member>
         <member name="F:Woof.Net.Http.OperationContract.RxCurlyBracesContent">
             <summary>
             Regular expression matching the text in curly braces.
