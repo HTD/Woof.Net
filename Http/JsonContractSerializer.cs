@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -21,7 +22,7 @@ namespace Woof.Net.Http {
         /// Creates the serializer object and initializes it with settings.
         /// </summary>
         /// <param name="settings">Optional custom settings for serialization.</param>
-        public JsonContractSerializer(JsonSerializerSettings settings = null) => Settings = settings ?? new JsonSerializerSettings();
+        public JsonContractSerializer(JsonSerializerSettings settings = null) => Settings = settings ?? new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
         /// <summary>
         /// Gets the content type for serialized data.
