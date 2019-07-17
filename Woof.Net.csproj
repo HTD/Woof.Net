@@ -4,16 +4,18 @@
     <Authors>Adam Łyskawa</Authors>
     <Company>CodeDog Ltd.</Company>
     <Description>Modern HTTP web services made easy.</Description>
-    <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
+    <Copyright>(c)2019 by CodeDog Ltd.</Copyright>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Net</PackageProjectUrl>
-    <PackageReleaseNotes>JSON serializer now uses camelCase by default.</PackageReleaseNotes>
+    <PackageReleaseNotes>ADD: Automatic SSL configuration.
+REMOVE: Manual SSL configuration.</PackageReleaseNotes>
     <PackageTags>webservice http net core</PackageTags>
     <Product>Woof.Net</Product>
     <PackageId>Woof.Net</PackageId>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Source\Woof\Woof.Net\Woof.Net.xml</DocumentationFile>

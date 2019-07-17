@@ -63,7 +63,10 @@ namespace Woof.Net.Http {
         /// Creates HTTP server instance for given prefixes.
         /// </summary>
         /// <param name="prefixes">Prefixes to bind with the server.</param>
-        public Server(params string[] prefixes) => Prefixes = prefixes;
+        public Server(params string[] prefixes) {
+            Prefixes = prefixes;
+            SslAutoConfigure();
+        }
 
         /// <summary>
         /// Starts the server.
