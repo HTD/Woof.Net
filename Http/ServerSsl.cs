@@ -20,13 +20,15 @@ namespace Woof.Net.Http {
             var appId = (string)
                 Assembly.GetEntryAssembly()
                 .GetCustomAttributesData()
-                .FirstOrDefault(i => i.AttributeType.Name == "GuidAttribute")
+                .FirstOrDefault(i => i.AttributeType.Name == "GuidAttribute")?
                 .ConstructorArguments[0]
                 .Value;
+            if (appId == null) return;
             for (int i = 0, n = Prefixes.Length; i < n; i++) {
                 if (String.IsNullOrEmpty(Prefixes[i])) continue;
                 var uri = new Uri(Prefixes[i]);
                 if (uri.Scheme != "https") continue;
+                if (appId == null) throw new InvalidOperationException("Application GUID must be set to use SSL endpoint");
                 var hostname = uri.Host;
                 var port = uri.Port;
                 var existing = SslGetCertProperties(hostname, port);
@@ -43,7 +45,7 @@ namespace Woof.Net.Http {
                     if (!SslAddCert(hostname, port, appId, cert.Thumbprint, storeName))
                         throw new InvalidOperationException($"Can't add certificate binding for {hostname}:{port}");
                 }
-                else throw new InvalidOperationException($"VALID certificate for {hostname} not found in {StoreLocation.LocalMachine}'s stores.");
+                else throw new InvalidOperationException($"VALID certificate for {hostname} not found in {StoreLocation.LocalMachine}'s stores");
             }
         }
 
@@ -76,12 +78,22 @@ namespace Woof.Net.Http {
                 using (var store = new X509Store(storeName, StoreLocation.LocalMachine)) {
                     try {
                         store.Open(OpenFlags.ReadOnly);
+                        //var certs =
+                        //    store
+                        //    .Certificates
+                        //    .Find(X509FindType.FindByTimeValid, DateTime.Now, true)
+                        //    .OfType<X509Certificate2>();
+                        //;
                         certificate =
                             store
                             .Certificates
                             .Find(X509FindType.FindByTimeValid, DateTime.Now, true)
                             .OfType<X509Certificate2>()
-                            .FirstOrDefault(c => host.EndsWith(c.Subject.Replace("CN=", "").Replace("*.", "")));
+                            .FirstOrDefault(c => {
+                                var cn = c.GetNameInfo(X509NameType.DnsName, forIssuer: false);
+                                if (String.IsNullOrEmpty(cn)) return false;
+                                return host.EndsWith(cn.Replace("*.", ""));
+                            });
                         if (certificate != null) return true;
                     }
                     catch (Exception) { } // if can't open, just give up.
@@ -106,6 +118,7 @@ namespace Woof.Net.Http {
             var output = process.StandardOutput.ReadToEnd();
             var lines = output.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             return lines
+                .Skip(2).TakeWhile(i => !i.Contains("Extended Properties:"))
                 .Select(l => l.Split(new string[] { " : " }, StringSplitOptions.RemoveEmptyEntries))
                 .Where(s => s.Length == 2)
                 .Select(s => new KeyValuePair<string, string>(s[0].Replace(" ", ""), s[1].Trim()))

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Adam Łyskawa</Authors>
@@ -7,15 +7,14 @@
     <Copyright>(c)2019 by CodeDog Ltd.</Copyright>
     <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/HTD/Woof.Net</PackageProjectUrl>
-    <PackageReleaseNotes>ADD: Automatic SSL configuration.
-REMOVE: Manual SSL configuration.</PackageReleaseNotes>
+    <PackageReleaseNotes>FIX: Automatic SSL configuration.</PackageReleaseNotes>
     <PackageTags>webservice http net core</PackageTags>
     <Product>Woof.Net</Product>
     <PackageId>Woof.Net</PackageId>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Source\Woof\Woof.Net\Woof.Net.xml</DocumentationFile>

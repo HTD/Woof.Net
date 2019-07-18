@@ -11,14 +11,15 @@ namespace Woof.Net.Tests {
 
     static class Program {
 
+        private const string Prefix = "https://codedog.test.net/";
+
         /// <summary>
         /// Tests the site and the REST service mode.
         /// </summary>
         /// <param name="args">Ignored.</param>
         public static void Main(params string[] args) {
-            var prefix = "http://localhost/";
-            Console.WriteLine($"Starting WOOF HTTP server on {prefix}...");
-            using (var server = new Server(prefix)) {
+            Console.WriteLine($"Starting WOOF HTTP server on {Prefix}...");
+            using (var server = new Server(Prefix)) {
                 server.SiteBindings.Add(new SiteBinding { FileSystemAdapter = new ResourceStreamAdapter(), DocumentRoot = "TestSite" });
                 server.ServiceBindings.Add(new WaitTestService());
                 server.Start();
@@ -44,7 +45,7 @@ namespace Woof.Net.Tests {
         /// <param name="n">Number of requests to send.</param>
         static void SendWaitRequests(int n) => Parallel.For(0, n, i => {
             Console.WriteLine($"Sending request id={i}...");
-            var req = WebRequest.Create("http://localhost/waitEvent/" + i);
+            var req = WebRequest.Create($"{Prefix}waitEvent/" + i);
             req.Timeout = 3600000;
             using (var response = req.GetResponse()) Console.WriteLine($"Request id={i} completed.");
         });
@@ -54,7 +55,7 @@ namespace Woof.Net.Tests {
         /// </summary>
         static void SendRelease() {
             Console.WriteLine("Sending release request.");
-            var req = WebRequest.Create("http://localhost/release");
+            var req = WebRequest.Create($"{Prefix}release");
             using (var response = req.GetResponse()) Console.WriteLine($"Release request done.");
         }
 
